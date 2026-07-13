@@ -476,3 +476,39 @@ document.getElementById("cardGPCode").innerText = gp.gpCode;
 document.getElementById("cardGPName").innerText = gp.gpName;
 
 }
+
+// ===============================
+// Dashboard Cards
+// ===============================
+
+document.querySelectorAll(".menu-card").forEach(card => {
+
+    card.addEventListener("click", function () {
+
+        const gp = JSON.parse(localStorage.getItem("currentGP"));
+
+        if (!gp) {
+
+            alert("Please select a Gram Panchayat first.");
+
+            return;
+
+        }
+
+        const report = this.dataset.report;
+
+        if (!report) {
+
+            alert("This module is under development.");
+
+            return;
+
+        }
+
+        localStorage.setItem("selectedReport", report);
+
+        window.location.href = "report.html";
+
+    });
+
+});

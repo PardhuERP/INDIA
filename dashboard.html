@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>INDIA Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <div class="header">
+
+        <h1>🇮🇳 INDIA</h1>
+
+        <p>Gram Panchayat Dashboard</p>
+
+    </div>
+
+    <div class="gp-card">
+
+        <div class="gp-title">
+
+            <span class="material-icons">location_on</span>
+
+            Current Gram Panchayat
+
+        </div>
+
+        <h2 id="currentGP">
+
+            Not Selected
+
+        </h2>
+
+        <p id="currentLocation">
+
+            Search and Select a GP
+
+        </p>
+
+    </div>
+
+    <div class="search-card">
+
+        <span class="material-icons">search</span>
+
+        <input
+            type="text"
+            id="searchGP"
+            placeholder="Search Gram Panchayat">
+
+        <div id="searchResults"></div>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="menu-card" data-report="Financial Year">
+            <span class="material-icons">bar_chart</span>
+            <h3>Month Summary</h3>
+            <p>Financial Reports</p>
+        </div>
+
+        <div class="menu-card" data-report="Planning">
+            <span class="material-icons">assignment</span>
+            <h3>Planning</h3>
+            <p>Planning Reports</p>
+        </div>
+
+        <div class="menu-card" data-report="Voucher">
+            <span class="material-icons">payments</span>
+            <h3>Voucher</h3>
+            <p>Voucher Reports</p>
+        </div>
+
+        <div class="menu-card">
+            <span class="material-icons">engineering</span>
+            <h3>Works</h3>
+            <p>Work Progress</p>
+        </div>
+
+        <div class="menu-card">
+            <span class="material-icons">apartment</span>
+            <h3>Assets</h3>
+            <p>Asset Register</p>
+        </div>
+
+        <div class="menu-card">
+            <span class="material-icons">fact_check</span>
+            <h3>Audit</h3>
+            <p>Audit Reports</p>
+        </div>
+
+        <div class="menu-card">
+            <span class="material-icons">account_balance</span>
+            <h3>GP Profile</h3>
+            <p>Panchayat Details</p>
+        </div>
+
+        <div class="menu-card">
+            <span class="material-icons">star</span>
+            <h3>Favorites</h3>
+            <p>Saved GPs</p>
+        </div>
+
+        <div class="menu-card">
+            <span class="material-icons">settings</span>
+            <h3>Settings</h3>
+            <p>Application</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>

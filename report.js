@@ -382,3 +382,52 @@ window.onload = async function () {
     updateSelection();
 
 };
+
+const searchBox = document.getElementById("searchGP");
+const searchResults = document.getElementById("searchResults");
+
+searchBox.addEventListener("input", async function () {
+
+    const keyword = this.value.trim();
+
+    searchResults.innerHTML = "";
+
+    if (keyword.length < 2) return;
+
+    const json = await api(
+        "searchGP",
+        "&keyword=" + encodeURIComponent(keyword)
+    );
+
+    if (!json.status) return;
+
+    json.data.forEach(gp => {
+
+        searchResults.innerHTML += `
+        <div class="search-item"
+             onclick="selectGP(${gp.gpCode})">
+
+            <b>${gp.gpName}</b><br>
+
+            <small>
+            ${gp.subDistrictName},
+            ${gp.districtName}
+            </small>
+
+        </div>
+        `;
+
+    });
+
+});
+
+async function selectGP(gpCode){
+
+    const json = await api(
+        "getGPDetails",
+        "&gp=" + gpCode
+    );
+
+    console.log(json);
+
+}

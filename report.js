@@ -466,4 +466,13 @@ if (report.options.length > 1) {
     // Generate report URL
     generateUrl();
 
+document.getElementById("gpCard").style.display = "block";
+
+document.getElementById("cardState").innerText = gp.stateName;
+document.getElementById("cardDistrict").innerText = gp.districtName;
+document.getElementById("cardSubDistrict").innerText = gp.subDistrictName;
+document.getElementById("cardVillage").innerText = gp.villageName;
+document.getElementById("cardGPCode").innerText = gp.gpCode;
+document.getElementById("cardGPName").innerText = gp.gpName;
+
 }

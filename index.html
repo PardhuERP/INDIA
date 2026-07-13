@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>INDIA Report Navigator</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>🇮🇳 INDIA Report Navigator</h1>
+
+<div class="card">
+
+<label>Financial Year</label>
+
+<select id="year">
+<option value="2026-2027">2026-2027</option>
+<option value="2025-2026">2025-2026</option>
+<option value="2024-2025">2024-2025</option>
+</select>
+
+<label>State</label>
+
+<select id="state">
+<option>Loading...</option>
+</select>
+
+<label>District</label>
+
+<select id="district">
+<option>Select State</option>
+</select>
+
+<label>Sub District</label>
+
+<select id="subdistrict">
+<option>Select District</option>
+</select>
+
+<label>Gram Panchayat</label>
+
+<select id="gramPanchayat">
+<option>Select Sub District</option>
+</select>
+
+<label>Report Type</label>
+
+<select id="report">
+<option>Select Report</option>
+</select>
+
+<label>Generated URL</label>
+
+<input
+id="generatedUrl"
+type="text"
+readonly>
+
+<div id="reportStatus">
+🔴 Complete all selections
+</div>
+
+<div class="buttons">
+
+<button onclick="copyUrl()">
+Copy URL
+</button>
+
+<button onclick="openReport()">
+Open Report
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Selected Details</h3>
+
+<table>
+
+<tr>
+<td>Year</td>
+<td id="selectedYear">-</td>
+</tr>
+
+<tr>
+<td>State</td>
+<td id="selectedState">-</td>
+</tr>
+
+<tr>
+<td>District</td>
+<td id="selectedDistrict">-</td>
+</tr>
+
+<tr>
+<td>Sub District</td>
+<td id="selectedSubDistrict">-</td>
+</tr>
+
+<tr>
+<td>Gram Panchayat</td>
+<td id="selectedGramPanchayat">-</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="report.js"></script>
+
+</body>
+</html>

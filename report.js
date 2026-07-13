@@ -428,6 +428,37 @@ async function selectGP(gpCode){
         "&gp=" + gpCode
     );
 
-    console.log(json);
+    if(!json.status) return;
+
+    const gp = json.data;
+
+    // Select State
+    state.value = gp.stateCode;
+
+    // Reload Districts
+    await loadDistricts();
+    district.value = gp.districtCode;
+
+    // Reload Sub Districts
+    await loadSubDistricts(gp.districtCode);
+    subdistrict.value = gp.subDistrictCode;
+
+    // Reload Gram Panchayats
+    await loadGramPanchayats(
+        gp.districtCode,
+        gp.subDistrictCode
+    );
+
+    gramPanchayat.value = gp.gpCode;
+
+    // Clear search
+    searchBox.value = gp.gpName;
+    searchResults.innerHTML = "";
+
+    // Update UI
+    updateSelection();
+
+    // Generate report URL
+    generateUrl();
 
 }

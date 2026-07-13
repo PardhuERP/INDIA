@@ -458,6 +458,11 @@ async function selectGP(gpCode){
     // Update UI
     updateSelection();
 
+    // Auto select first report
+if (report.options.length > 1) {
+    report.selectedIndex = 1;
+}
+
     // Generate report URL
     generateUrl();
 

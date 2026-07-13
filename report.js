@@ -102,3 +102,283 @@ function updateSelection() {
             : "-";
 
 }
+
+// ======================================
+// LOAD STATES
+// ======================================
+
+async function loadStates() {
+
+    const json = await api("getStates");
+
+    if (!json.status) return;
+
+    state.innerHTML =
+        "<option value=''>Select State</option>";
+
+    json.data.forEach(s => {
+
+        state.innerHTML +=
+            `<option value="${s.code}">${s.name}</option>`;
+
+    });
+
+}
+
+// ======================================
+// LOAD DISTRICTS
+// ======================================
+
+async function loadDistricts() {
+
+    const json = await api("getDistricts");
+
+    if (!json.status) return;
+
+    district.innerHTML =
+        "<option value=''>Select District</option>";
+
+    json.data.forEach(d => {
+
+        district.innerHTML +=
+            `<option value="${d.code}">${d.name}</option>`;
+
+    });
+
+}
+
+// ======================================
+// LOAD SUB DISTRICTS
+// ======================================
+
+async function loadSubDistricts(districtCode) {
+
+    const json = await api(
+        "getSubDistricts",
+        "&district=" + encodeURIComponent(districtCode)
+    );
+
+    if (!json.status) return;
+
+    subdistrict.innerHTML =
+        "<option value=''>Select Sub District</option>";
+
+    json.data.forEach(s => {
+
+        subdistrict.innerHTML +=
+            `<option value="${s.code}">${s.name}</option>`;
+
+    });
+
+}
+
+// ======================================
+// LOAD GRAM PANCHAYATS
+// ======================================
+
+async function loadGramPanchayats(districtCode, subDistrictCode) {
+
+    const json = await api(
+        "getGramPanchayats",
+        "&district=" + encodeURIComponent(districtCode) +
+        "&subdistrict=" + encodeURIComponent(subDistrictCode)
+    );
+
+    if (!json.status) return;
+
+    gramPanchayat.innerHTML =
+        "<option value=''>Select Gram Panchayat</option>";
+
+    json.data.forEach(g => {
+
+        gramPanchayat.innerHTML +=
+            `<option value="${g.code}">${g.name}</option>`;
+
+    });
+
+                      }
+
+// ======================================
+// LOAD REPORT TYPES
+// ======================================
+
+async function loadReportTypes() {
+
+    const json = await api("getReportTypes");
+
+    if (!json.status) return;
+
+    reportTemplates = json.data;
+
+    report.innerHTML =
+        "<option value=''>Select Report</option>";
+
+    json.data.forEach(r => {
+
+        report.innerHTML +=
+            `<option value="${r.id}">${r.name}</option>`;
+
+    });
+
+}
+
+// ======================================
+// GENERATE URL
+// ======================================
+
+function generateUrl() {
+
+    if (
+        !year.value ||
+        !state.value ||
+        !district.value ||
+        !subdistrict.value ||
+        !gramPanchayat.value ||
+        !report.value
+    ) {
+
+        generatedUrl.value = "";
+
+        reportStatus.innerHTML =
+            "🔴 Complete all selections";
+
+        return;
+
+    }
+
+    const template =
+        reportTemplates.find(
+            x => String(x.id) === String(report.value)
+        );
+
+    if (!template) return;
+
+    let url = template.url;
+
+    url = url.replace("{YEAR}", year.value);
+    url = url.replace("{STATE}", state.value);
+    url = url.replace("{DISTRICT}", district.value);
+    url = url.replace("{SUBDISTRICT}", subdistrict.value);
+    url = url.replace("{GP_CODE}", gramPanchayat.value);
+
+    generatedUrl.value = url;
+
+    reportStatus.innerHTML =
+        "🟢 Report Ready";
+
+}
+
+// ======================================
+// COPY URL
+// ======================================
+
+function copyUrl() {
+
+    if (!generatedUrl.value) return;
+
+    navigator.clipboard.writeText(
+        generatedUrl.value
+    );
+
+    alert("URL Copied");
+
+}
+
+// ======================================
+// OPEN REPORT
+// ======================================
+
+function openReport() {
+
+    if (!generatedUrl.value) return;
+
+    window.open(
+        generatedUrl.value,
+        "_blank"
+    );
+
+}
+
+// ======================================
+// EVENTS
+// ======================================
+
+state.addEventListener("change", async function () {
+
+    resetDistrict();
+    resetSubDistrict();
+    resetGramPanchayat();
+
+    await loadDistricts();
+
+    updateSelection();
+
+    generateUrl();
+
+});
+
+district.addEventListener("change", async function () {
+
+    resetSubDistrict();
+    resetGramPanchayat();
+
+    if (!this.value) return;
+
+    await loadSubDistricts(this.value);
+
+    updateSelection();
+
+    generateUrl();
+
+});
+
+subdistrict.addEventListener("change", async function () {
+
+    resetGramPanchayat();
+
+    if (!this.value) return;
+
+    await loadGramPanchayats(
+        district.value,
+        this.value
+    );
+
+    updateSelection();
+
+    generateUrl();
+
+});
+
+gramPanchayat.addEventListener("change", function () {
+
+    updateSelection();
+
+    generateUrl();
+
+});
+
+report.addEventListener("change", generateUrl);
+
+year.addEventListener("change", function () {
+
+    updateSelection();
+
+    generateUrl();
+
+});
+
+// ======================================
+// START
+// ======================================
+
+window.onload = async function () {
+
+    await loadStates();
+
+    await loadDistricts();
+
+    await loadReportTypes();
+
+    updateSelection();
+
+};

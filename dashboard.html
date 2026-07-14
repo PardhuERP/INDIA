@@ -8,19 +8,67 @@
 
 <style>
 
-body{
+*{
+box-sizing:border-box;
 font-family:Arial,sans-serif;
+}
+
+body{
+margin:0;
+padding:15px;
 background:linear-gradient(180deg,#020617,#0f172a);
 color:#fff;
-margin:0;
-padding:12px;
 }
 
 .header{
 text-align:center;
-font-size:24px;
+font-size:26px;
 font-weight:bold;
-margin:20px 0;
+margin-bottom:15px;
+}
+
+.subheader{
+text-align:center;
+color:#94a3b8;
+margin-bottom:20px;
+}
+
+.gp-card{
+background:#1e293b;
+padding:15px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.4);
+}
+
+.gp-title{
+font-size:13px;
+color:#94a3b8;
+margin-bottom:8px;
+}
+
+#gpName{
+font-size:22px;
+font-weight:bold;
+}
+
+#gpLocation{
+margin-top:5px;
+font-size:14px;
+color:#cbd5e1;
+}
+
+.change-btn{
+margin-top:15px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
 }
 
 .grid{
@@ -31,8 +79,8 @@ gap:12px;
 
 .card{
 background:#1e293b;
-padding:18px 10px;
-border-radius:14px;
+border-radius:15px;
+padding:18px 8px;
 text-align:center;
 cursor:pointer;
 box-shadow:0 4px 10px rgba(0,0,0,.4);
@@ -45,13 +93,21 @@ transform:scale(1.04);
 }
 
 .icon{
-font-size:28px;
+font-size:30px;
 margin-bottom:8px;
 }
 
 .title{
 font-size:14px;
 font-weight:bold;
+}
+
+@media(max-width:700px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
 }
 
 </style>
@@ -61,7 +117,43 @@ font-weight:bold;
 <body>
 
 <div class="header">
-🇮🇳 INDIA Dashboard
+
+🇮🇳 INDIA
+
+</div>
+
+<div class="subheader">
+
+Gram Panchayat Dashboard
+
+</div>
+
+<div class="gp-card">
+
+<div class="gp-title">
+
+📍 Current Gram Panchayat
+
+</div>
+
+<div id="gpName">
+
+Not Selected
+
+</div>
+
+<div id="gpLocation">
+
+Please select Gram Panchayat
+
+</div>
+
+<button class="change-btn" onclick="changeGP()">
+
+🔍 Change Gram Panchayat
+
+</button>
+
 </div>
 
 <div class="grid">
@@ -97,8 +189,13 @@ font-weight:bold;
 </div>
 
 <div class="card" onclick="openReport('GP Profile')">
-<div class="icon">🏠</div>
+<div class="icon">🏡</div>
 <div class="title">GP Profile</div>
+</div>
+
+<div class="card" onclick="openReport('Registers')">
+<div class="icon">📚</div>
+<div class="title">Registers</div>
 </div>
 
 <div class="card" onclick="openReport('Settings')">
@@ -106,20 +203,36 @@ font-weight:bold;
 <div class="title">Settings</div>
 </div>
 
-<div class="card" onclick="openReport('About')">
-<div class="icon">ℹ️</div>
-<div class="title">About</div>
-</div>
-
 </div>
 
 <script>
 
+loadCurrentGP();
+
+function loadCurrentGP(){
+
+const gp=JSON.parse(localStorage.getItem("currentGP"));
+
+if(!gp) return;
+
+document.getElementById("gpName").innerHTML=gp.gpName;
+
+document.getElementById("gpLocation").innerHTML=
+gp.subDistrictName+" • "+gp.districtName;
+
+}
+
+function changeGP(){
+
+window.location.href="index.html";
+
+}
+
 function openReport(report){
 
-    localStorage.setItem("selectedReport", report);
+localStorage.setItem("selectedReport",report);
 
-    window.location.href="index.html";
+window.location.href="index.html";
 
 }
 

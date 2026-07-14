@@ -1,113 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>INDIA Dashboard</title>
+<title>Dashboard</title>
 
 <style>
 
-*{
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
-margin:0;
-padding:15px;
+font-family:Arial;
 background:linear-gradient(180deg,#020617,#0f172a);
-color:#fff;
+color:white;
+margin:0;
+padding:10px;
 }
 
 .header{
 text-align:center;
-font-size:26px;
-font-weight:bold;
-margin-bottom:15px;
-}
-
-.subheader{
-text-align:center;
-color:#94a3b8;
-margin-bottom:20px;
-}
-
-.gp-card{
-background:#1e293b;
-padding:15px;
-border-radius:15px;
-margin-bottom:20px;
-box-shadow:0 4px 10px rgba(0,0,0,.4);
-}
-
-.gp-title{
-font-size:13px;
-color:#94a3b8;
-margin-bottom:8px;
-}
-
-#gpName{
 font-size:22px;
 font-weight:bold;
+margin:15px 0;
 }
 
-#gpLocation{
-margin-top:5px;
-font-size:14px;
-color:#cbd5e1;
-}
-
-.change-btn{
-margin-top:15px;
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-background:#2563eb;
-color:white;
-font-size:15px;
-font-weight:bold;
-cursor:pointer;
-}
-
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:12px;
+gap:10px;
 }
 
+/* CARD */
 .card{
 background:#1e293b;
-border-radius:15px;
-padding:18px 8px;
+padding:15px 8px;
+border-radius:12px;
 text-align:center;
+font-size:13px;
+font-weight:bold;
 cursor:pointer;
-box-shadow:0 4px 10px rgba(0,0,0,.4);
-transition:.2s;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+transition:0.2s;
 }
 
 .card:hover{
+transform:scale(1.05);
 background:#334155;
-transform:scale(1.04);
 }
 
+/* ICON */
 .icon{
-font-size:30px;
-margin-bottom:8px;
-}
-
-.title{
-font-size:14px;
-font-weight:bold;
-}
-
-@media(max-width:700px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
+font-size:20px;
+margin-bottom:6px;
 }
 
 </style>
@@ -116,124 +59,101 @@ grid-template-columns:repeat(2,1fr);
 
 <body>
 
-<div class="header">
-
-🇮🇳 INDIA
-
-</div>
-
-<div class="subheader">
-
-Gram Panchayat Dashboard
-
-</div>
-
-<div class="gp-card">
-
-<div class="gp-title">
-
-📍 Current Gram Panchayat
-
-</div>
-
-<div id="gpName">
-
-Not Selected
-
-</div>
-
-<div id="gpLocation">
-
-Please select Gram Panchayat
-
-</div>
-
-<button class="change-btn" onclick="changeGP()">
-
-🔍 Change Gram Panchayat
-
-</button>
-
-</div>
+<div class="header">📊 Dashboard</div>
 
 <div class="grid">
 
-<div class="card" onclick="openReport('Financial Year')">
+<div class="card" onclick="openPage('index.html')">
+<div class="icon">📊 </div>
+Monthly summery
+  </div>
+
+<div class="card" onclick="openPage('strategy_list.html')">
+<div class="icon">📈</div>
+Nifty Strategy List
+</div>
+
+<div class="card" onclick="openPage('nifty-strategy-lab.html')">
+<div class="icon">🧪</div>
+Strategy Lab
+</div>
+
+<div class="card" onclick="openPage('scanner.html')">
+<div class="icon">🚀</div>
+Breakout Stocks
+</div>
+
+<div class="card" onclick="openPage('nifty50delivery.html')">
+<div class="icon">📦</div>
+Nifty50 Delivery
+</div>
+
+<div class="card" onclick="openPage('niftyallstocks.html')">
 <div class="icon">📊</div>
-<div class="title">Month Summary</div>
+All Stocks Delivery
 </div>
 
-<div class="card" onclick="openReport('Planning')">
-<div class="icon">📋</div>
-<div class="title">Planning</div>
-</div>
-
-<div class="card" onclick="openReport('Voucher')">
+<div class="card" onclick="openPage('fiidii.html')">
 <div class="icon">💰</div>
-<div class="title">Voucher</div>
+FII DII Data
 </div>
 
-<div class="card" onclick="openReport('Works')">
-<div class="icon">🏗️</div>
-<div class="title">Works</div>
+<div class="card" onclick="openPage('niftyvalue.html')">
+<div class="icon">💲💵 </div>
+Nifty FairView
 </div>
 
-<div class="card" onclick="openReport('Assets')">
-<div class="icon">🏛️</div>
-<div class="title">Assets</div>
+  <div class="card" onclick="openPage('stocksvalueedge.html')">
+<div class="icon">💲 </div>
+Market FairView
 </div>
 
-<div class="card" onclick="openReport('Audit')">
+<div class="card" onclick="openPage('sipcalculator.html')">
+<div class="icon">📉</div>
+SIP Calculator
+</div>
+
+<div class="card" onclick="openPage('sipdipcalc.html')">
+<div class="icon">🎯</div>
+SIP DIP Calculator
+</div>
+
+<div class="card" onclick="openPage('getfiidii.html')">
 <div class="icon">🧾</div>
-<div class="title">Audit</div>
+FII JSON
 </div>
 
-<div class="card" onclick="openReport('GP Profile')">
-<div class="icon">🏡</div>
-<div class="title">GP Profile</div>
+<div class="card" onclick="openPage('mf.html')">
+<div class="icon">💵 </div>
+MUTUAL FUND
+</div>
+  
+  <div class="card" onclick="openPage('mfscreener.html')">
+<div class="icon">💵🔎 </div>
+MF Screener
 </div>
 
-<div class="card" onclick="openReport('Registers')">
-<div class="icon">📚</div>
-<div class="title">Registers</div>
+<div class="card" onclick="openPage('focused.html')">
+<div class="icon">📺</div>
+Smart Flow
 </div>
 
-<div class="card" onclick="openReport('Settings')">
-<div class="icon">⚙️</div>
-<div class="title">Settings</div>
+  <div class="card" onclick="openPage('niftytrade.html')">
+<div class="icon">🐻🐂</div>
+NiftyStrength💪 
+</div>
+
+  <div class="card" onclick="openPage('comingsoon.html')">
+<div class="icon">🔥 </div>
+ComingSoon
 </div>
 
 </div>
 
 <script>
 
-loadCurrentGP();
-
-function loadCurrentGP(){
-
-const gp=JSON.parse(localStorage.getItem("currentGP"));
-
-if(!gp) return;
-
-document.getElementById("gpName").innerHTML=gp.gpName;
-
-document.getElementById("gpLocation").innerHTML=
-gp.subDistrictName+" • "+gp.districtName;
-
-}
-
-function changeGP(){
-
-window.location.href="index.html";
-
-}
-
-function openReport(report){
-
-localStorage.setItem("selectedReport",report);
-
-window.location.href="index.html";
-
+function openPage(page){
+window.location.href = page;
 }
 
 </script>

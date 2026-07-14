@@ -1,3 +1,9 @@
+let tsState;
+let tsDistrict;
+let tsSubDistrict;
+let tsGramPanchayat;
+let tsReport;
+
 // ======================================
 // CONFIG
 // ======================================
@@ -113,6 +119,11 @@ async function loadStates() {
 
     if (!json.status) return;
 
+    // Destroy TomSelect if already exists
+    if (tsState) {
+        tsState.destroy();
+    }
+
     state.innerHTML =
         "<option value=''>Select State</option>";
 
@@ -121,6 +132,16 @@ async function loadStates() {
         state.innerHTML +=
             `<option value="${s.code}">${s.name}</option>`;
 
+    });
+
+    // Recreate TomSelect
+    tsState = new TomSelect("#state", {
+        create: false,
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        placeholder: "Search State..."
     });
 
 }
@@ -371,6 +392,12 @@ year.addEventListener("change", function () {
 // START
 // ======================================
 
+let tsState;
+let tsDistrict;
+let tsSubDistrict;
+let tsGramPanchayat;
+let tsReport;
+
 window.onload = async function () {
 
     await loadStates();
@@ -379,48 +406,15 @@ window.onload = async function () {
 
     await loadReportTypes();
 
-    await loadDashboardSelection();
+    tsState = new TomSelect("#state");
+    tsDistrict = new TomSelect("#district");
+    tsSubDistrict = new TomSelect("#subdistrict");
+    tsGramPanchayat = new TomSelect("#gramPanchayat");
+    tsReport = new TomSelect("#report");
 
     updateSelection();
 
 };
-const searchBox = document.getElementById("searchGP");
-const searchResults = document.getElementById("searchResults");
-
-searchBox.addEventListener("input", async function () {
-
-    const keyword = this.value.trim();
-
-    searchResults.innerHTML = "";
-
-    if (keyword.length < 2) return;
-
-    const json = await api(
-        "searchGP",
-        "&keyword=" + encodeURIComponent(keyword)
-    );
-
-    if (!json.status) return;
-
-    json.data.forEach(gp => {
-
-        searchResults.innerHTML += `
-        <div class="search-item"
-             onclick="selectGP(${gp.gpCode})">
-
-            <b>${gp.gpName}</b><br>
-
-            <small>
-            ${gp.subDistrictName},
-            ${gp.districtName}
-            </small>
-
-        </div>
-        `;
-
-    });
-
-});
 
 async function selectGP(gpCode){
 

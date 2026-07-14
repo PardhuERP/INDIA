@@ -1,69 +1,162 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>INDIA Dashboard</title>
+<title>Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(180deg,#020617,#0f172a);
+color:white;
+margin:0;
+padding:10px;
+}
+
+.header{
+text-align:center;
+font-size:22px;
+font-weight:bold;
+margin:15px 0;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+/* CARD */
+.card{
+background:#1e293b;
+padding:15px 8px;
+border-radius:12px;
+text-align:center;
+font-size:13px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+transition:0.2s;
+}
+
+.card:hover{
+transform:scale(1.05);
+background:#334155;
+}
+
+/* ICON */
+.icon{
+font-size:20px;
+margin-bottom:6px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h2>🇮🇳 INDIA Dashboard</h2>
+<div class="header">📊 Dashboard</div>
 
 <div class="grid">
 
-<div class="card"
-onclick="openReport(1)">
-📊
-<br>
-Month Summary
+<div class="card" onclick="openPage('index.html')">
+<div class="icon">🟢 </div>
+Monthly summery 
+  </div>
+
+<div class="card" onclick="openPage('strategy_list.html')">
+<div class="icon">📈</div>
+Nifty Strategy List
 </div>
 
-<div class="card"
-onclick="openReport(2)">
-📋
-<br>
-Planning
+<div class="card" onclick="openPage('nifty-strategy-lab.html')">
+<div class="icon">🧪</div>
+Strategy Lab
 </div>
 
-<div class="card"
-onclick="openReport(3)">
-💰
-<br>
-Voucher
+<div class="card" onclick="openPage('scanner.html')">
+<div class="icon">🚀</div>
+Breakout Stocks
 </div>
 
-<div class="card"
-onclick="openReport(4)">
-🏗
-<br>
-Works
+<div class="card" onclick="openPage('nifty50delivery.html')">
+<div class="icon">📦</div>
+Nifty50 Delivery
 </div>
 
-<div class="card"
-onclick="openReport(5)">
-🏛
-<br>
-Assets
+<div class="card" onclick="openPage('niftyallstocks.html')">
+<div class="icon">📊</div>
+All Stocks Delivery
 </div>
 
-<div class="card"
-onclick="openReport(6)">
-🧾
-<br>
-Audit
+<div class="card" onclick="openPage('fiidii.html')">
+<div class="icon">💰</div>
+FII DII Data
+</div>
+
+<div class="card" onclick="openPage('niftyvalue.html')">
+<div class="icon">💲💵 </div>
+Nifty FairView
+</div>
+
+  <div class="card" onclick="openPage('stocksvalueedge.html')">
+<div class="icon">💲 </div>
+Market FairView
+</div>
+
+<div class="card" onclick="openPage('sipcalculator.html')">
+<div class="icon">📉</div>
+SIP Calculator
+</div>
+
+<div class="card" onclick="openPage('sipdipcalc.html')">
+<div class="icon">🎯</div>
+SIP DIP Calculator
+</div>
+
+<div class="card" onclick="openPage('getfiidii.html')">
+<div class="icon">🧾</div>
+FII JSON
+</div>
+
+<div class="card" onclick="openPage('mf.html')">
+<div class="icon">💵 </div>
+MUTUAL FUND
+</div>
+  
+  <div class="card" onclick="openPage('mfscreener.html')">
+<div class="icon">💵🔎 </div>
+MF Screener
+</div>
+
+<div class="card" onclick="openPage('focused.html')">
+<div class="icon">📺</div>
+Smart Flow
+</div>
+
+  <div class="card" onclick="openPage('niftytrade.html')">
+<div class="icon">🐻🐂</div>
+NiftyStrength💪 
+</div>
+
+  <div class="card" onclick="openPage('comingsoon.html')">
+<div class="icon">🔥 </div>
+ComingSoon
 </div>
 
 </div>
 
-<script src="dashboard.js"></script>
+<script>
+
+function openPage(page){
+window.location.href = page;
+}
+
+</script>
 
 </body>
-
 </html>

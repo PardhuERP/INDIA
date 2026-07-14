@@ -1,9 +1,3 @@
-let tsState;
-let tsDistrict;
-let tsSubDistrict;
-let tsGramPanchayat;
-let tsReport;
-
 // ======================================
 // CONFIG
 // ======================================

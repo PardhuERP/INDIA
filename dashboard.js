@@ -1,3 +1,4 @@
+alert("Dashboard JS Loaded");
 const API = "https://script.google.com/macros/s/AKfycbxPzr5LGD7tHjmSlkMZfb6JqoQcJMh15Ly-tkp2lkFKbm4gGBJlCIppTQYaiS-5MaLmfA/exec";
 
 const searchBox = document.getElementById("searchGP");

@@ -379,11 +379,10 @@ window.onload = async function () {
 
     await loadReportTypes();
 
-    await loadDashboardSelection();
-
     updateSelection();
 
 };
+
 const searchBox = document.getElementById("searchGP");
 const searchResults = document.getElementById("searchResults");
 
@@ -513,47 +512,3 @@ document.querySelectorAll(".menu-card").forEach(card => {
     });
 
 });
-
-async function loadDashboardSelection() {
-
-    const gp = JSON.parse(localStorage.getItem("currentGP"));
-    const reportName = localStorage.getItem("selectedReport");
-
-    if (!gp) return;
-
-    state.value = gp.stateCode;
-
-    await loadDistricts();
-
-    district.value = gp.districtCode;
-
-    await loadSubDistricts(gp.districtCode);
-
-    subdistrict.value = gp.subDistrictCode;
-
-    await loadGramPanchayats(
-        gp.districtCode,
-        gp.subDistrictCode
-    );
-
-    gramPanchayat.value = gp.gpCode;
-
-    if (reportName) {
-
-        for (let i = 0; i < report.options.length; i++) {
-
-            if (report.options[i].text === reportName) {
-
-                report.selectedIndex = i;
-                break;
-
-            }
-
-        }
-
-    }
-
-    updateSelection();
-    generateUrl();
-
-}

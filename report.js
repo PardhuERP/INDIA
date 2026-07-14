@@ -375,7 +375,6 @@ window.onload = async function () {
 
     await loadStates();
 
-    await loadDistricts();
 
     await loadReportTypes();
 

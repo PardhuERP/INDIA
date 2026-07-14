@@ -8,7 +8,10 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
 </head>
+
+    
 <body>
 
 <div class="container">
@@ -17,54 +20,8 @@
 
 <div class="card">
 
-<label>🔍 Search Gram Panchayat</label>
 
-<input
-    type="text"
-    id="searchGP"
-    placeholder="Type GP Name...">
 
-<div id="searchResults"></div>
-
-<div id="gpCard" class="gp-card" style="display:none;">
-
-    <h3>📍 Selected Gram Panchayat</h3>
-
-    <table>
-
-        <tr>
-            <td>State</td>
-            <td id="cardState"></td>
-        </tr>
-
-        <tr>
-            <td>District</td>
-            <td id="cardDistrict"></td>
-        </tr>
-
-        <tr>
-            <td>Sub District</td>
-            <td id="cardSubDistrict"></td>
-        </tr>
-
-        <tr>
-            <td>Village</td>
-            <td id="cardVillage"></td>
-        </tr>
-
-        <tr>
-            <td>GP Code</td>
-            <td id="cardGPCode"></td>
-        </tr>
-
-        <tr>
-            <td>Gram Panchayat</td>
-            <td id="cardGPName"></td>
-        </tr>
-
-    </table>
-
-</div>
 
 <label>Financial Year</label>
 
@@ -165,6 +122,7 @@ Open Report
 </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 
 <script src="report.js"></script>
 
